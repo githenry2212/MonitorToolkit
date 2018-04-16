@@ -21,26 +21,9 @@ final class LinuxMonitorToolkit extends MonitorToolkit {
             hardware.setCpuName(getCpuName());
             hardware.setCpuCores(getPhysicalCores());
             hardware.setCpuProcessors(Runtime.getRuntime().availableProcessors());
-            hardware.setCpuFrequency(getCpuFrequency());
         } catch (IOException e) {
             throw new MonitorException("获取CPU信息失败", e);
         }
-    }
-
-    private int getCpuFrequency() throws IOException {
-        List<String> cmdList = Arrays.asList("sh", "-c", "cat /proc/cpuinfo | grep \"cpu MHz\" | uniq | cut -d: -f2");
-        String result = CommandExecutor.execute(cmdList).trim();
-        if (StringUtils.isNotEmpty(result)) {
-            String[] freqArr = result.split("\n");
-            double total = 0;
-            int count = 0;
-            for (String freqStr : freqArr) {
-                total += Double.parseDouble(freqStr.trim());
-                count++;
-            }
-            return (int) (total / count);
-        }
-        return 0;
     }
 
     private int getPhysicalCores() throws IOException {

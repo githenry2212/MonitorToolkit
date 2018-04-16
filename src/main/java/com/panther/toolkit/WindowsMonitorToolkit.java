@@ -46,9 +46,6 @@ final class WindowsMonitorToolkit extends MonitorToolkit {
                 case "NumberOfCores":
                     hardware.setCpuCores(Integer.parseInt(value.trim()));
                     break;
-                case "CurrentClockSpeed":
-                    hardware.setCpuFrequency(Double.valueOf(value.trim()).intValue());
-                    break;
                 default:
             }
         }

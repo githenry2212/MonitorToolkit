@@ -9,7 +9,6 @@ public class Hardware {
     private String cpuName;
     private int cpuCores;
     private int cpuProcessors;
-    private int cpuFrequency;
     private long memorySize;
     private long diskSize;
 
@@ -35,14 +34,6 @@ public class Hardware {
 
     public void setCpuProcessors(int cpuProcessors) {
         this.cpuProcessors = cpuProcessors;
-    }
-
-    public int getCpuFrequency() {
-        return cpuFrequency;
-    }
-
-    public void setCpuFrequency(int cpuFrequency) {
-        this.cpuFrequency = cpuFrequency;
     }
 
     public long getMemorySize() {
