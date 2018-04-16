@@ -31,7 +31,14 @@ final class LinuxMonitorToolkit extends MonitorToolkit {
         List<String> cmdList = Arrays.asList("sh", "-c", "cat /proc/cpuinfo | grep \"cpu MHz\" | uniq | cut -d: -f2");
         String result = CommandExecutor.execute(cmdList).trim();
         if (StringUtils.isNotEmpty(result)) {
-            return Double.valueOf(result).intValue();
+            String[] freqArr = result.split("\n");
+            double total = 0;
+            int count = 0;
+            for (String freqStr : freqArr) {
+                total += Double.parseDouble(freqStr.trim());
+                count++;
+            }
+            return (int) (total / count);
         }
         return 0;
     }
