@@ -19,7 +19,7 @@ final class WindowsMonitorToolkit extends MonitorToolkit {
     @Override
     void initCpu(Hardware hardware) throws MonitorException {
         hardware.setCpuProcessors(Runtime.getRuntime().availableProcessors());
-        String cmd = "wmic cpu get Name,NumberOfCores,MaxClockSpeed /VALUE";
+        String cmd = "wmic cpu get Name,NumberOfCores,CurrentClockSpeed /VALUE";
         try {
             String result = CommandExecutor.execute(cmd);
             String separator = "\\r+\\n";
@@ -46,7 +46,7 @@ final class WindowsMonitorToolkit extends MonitorToolkit {
                 case "NumberOfCores":
                     hardware.setCpuCores(Integer.parseInt(value.trim()));
                     break;
-                case "MaxClockSpeed":
+                case "CurrentClockSpeed":
                     hardware.setCpuFrequency(Double.valueOf(value.trim()).intValue());
                     break;
                 default:
